@@ -125,6 +125,10 @@ ifneq (,$(filter nanocoap,$(USEMODULE)))
   DIRS += net/application_layer/nanocoap
 endif
 
+ifneq (,$(filter uart,$(USEMODULE)))
+    DIRS += uart
+endif
+
 DIRS += $(dir $(wildcard $(addsuffix /Makefile, ${USEMODULE})))
 
 include $(RIOTBASE)/Makefile.base
