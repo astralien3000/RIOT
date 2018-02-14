@@ -86,3 +86,11 @@ endif
 ifneq (native,$(BOARD))
   INCLUDES += -I$(RIOTBASE)/sys/libc/include
 endif
+
+ifneq (,$(filter usbdev,$(USEMODULE)))
+    USEMODULE_INCLUDES += $(RIOTBASE)/sys/usbdev/include
+    ifneq (,$(filter usbdev-acm,$(USEMODULE)))
+        export UNDEF += $(BINDIR)usbdev/usbdev_acm.o
+    endif
+endif
+
