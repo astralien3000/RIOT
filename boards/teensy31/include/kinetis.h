@@ -31,6 +31,8 @@
 #ifndef _kinetis_h_
 #define _kinetis_h_
 
+#define __MK20DX256__
+
 #include <stdint.h>
 
 // Teensy 3.0
