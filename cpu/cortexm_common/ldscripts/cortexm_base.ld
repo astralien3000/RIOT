@@ -105,6 +105,22 @@ SECTIONS
     . = ALIGN(4);
     _etext = .;
 
+    .usbdescriptortable (NOLOAD) : {
+            /* . = ORIGIN(RAM); */
+            . = ALIGN(512);
+            *(.usbdescriptortable*)
+    } > ram
+
+    .dmabuffers (NOLOAD) : {
+            . = ALIGN(4);
+            *(.dmabuffers*)
+    } > ram
+
+    .usbbuffers (NOLOAD) : {
+            . = ALIGN(4);
+            *(.usbbuffers*)
+    } > ram
+
     /* stack section */
     .stack (NOLOAD):
     {

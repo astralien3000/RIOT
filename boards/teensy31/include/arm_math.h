@@ -264,15 +264,15 @@
 #define __CORTEX_M	4
 #define __FPU_USED	0
 #define ARM_MATH_CM4
-#include "core_cmInstr.h"
-#include "core_cm4_simd.h"
+#include "teensy_arm_core_cmInstr.h"
+#include "teensy_arm_core_cm4_simd.h"
 
 
 #if 0
 // generic for any board...
 #define __CMSIS_GENERIC         /* disable NVIC and Systick functions */
 #if defined (ARM_MATH_CM4)
-#include "core_cm4.h"
+#include "teensy_arm_core_cm4.h"
 #elif defined (ARM_MATH_CM3)
 #include "core_cm3.h"
 #elif defined (ARM_MATH_CM0)

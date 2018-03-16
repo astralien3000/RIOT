@@ -28,6 +28,8 @@
  * SOFTWARE.
  */
 
+#if ENABLE_QTCREATOR
+
 #include "kinetis.h"
 #include "core_pins.h" // testing only
 #include "ser_print.h" // testing only
@@ -1342,3 +1344,4 @@ int kinetis_hsrun_enable(void)
 }
 #endif // HAS_KINETIS_HSRUN && F_CPU > 120000000
 
+#endif

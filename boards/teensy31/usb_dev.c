@@ -847,8 +847,7 @@ void _reboot_Teensyduino_(void)
 }
 
 
-
-void usb_isr(void)
+void isr_usb0(void) // void usb_isr(void)
 {
 	uint8_t status, stat, t;
 

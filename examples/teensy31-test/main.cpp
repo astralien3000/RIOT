@@ -2,12 +2,17 @@
 
 #include <quad_decode.h>
 #include <usb_serial.h>
-#include <usb_dev.h>
+
+__attribute__((noinline)) void _init_Teensyduino_internal_(void);
 
 int main(void)
 {
+    _init_Teensyduino_internal_();
+
+    Serial.begin(115200);
+
     while(1) {
-        usb_serial_write("Hello World!\n", sizeof("Hello World!\n"));
+        Serial.println("RIOT!");
     }
 
     return 0;
