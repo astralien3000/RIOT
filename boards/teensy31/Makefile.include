@@ -2,6 +2,10 @@
 CPU = kinetis
 CPU_MODEL = mk20dx256vlh7
 
+CFLAGS += -DUSB_SERIAL
+CFLAGS += -DF_CPU=48000000
+CFLAGS += -D__MK20DX256__
+
 # custom flasher to use with the bootloader
 TEENSY_LOADER = $(RIOTBASE)/dist/tools/teensy-loader-cli/teensy_loader
 FLASHER = $(TEENSY_LOADER)

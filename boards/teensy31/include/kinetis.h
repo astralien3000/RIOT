@@ -1,6 +1,6 @@
 /* Teensyduino Core Library
  * http://www.pjrc.com/teensy/
- * Copyright (c) 2013 PJRC.COM, LLC.
+ * Copyright (c) 2017 PJRC.COM, LLC.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,58 +31,56 @@
 #ifndef _kinetis_h_
 #define _kinetis_h_
 
-#define __MK20DX256__
-
 #include <stdint.h>
 
 // Teensy 3.0
 #if defined(__MK20DX128__)
 enum IRQ_NUMBER_t {
-  IRQ_DMA_CH0 =		0,
-  IRQ_DMA_CH1 =		1,
-  IRQ_DMA_CH2 =		2,
-  IRQ_DMA_CH3 =		3,
-  IRQ_DMA_ERROR =		4,
-  IRQ_FTFL_COMPLETE =	6,
-  IRQ_FTFL_COLLISION =	7,
-  IRQ_LOW_VOLTAGE =	8,
-  IRQ_LLWU =		9,
-  IRQ_WDOG =		10,
-  IRQ_I2C0 =		11,
-  IRQ_SPI0 =		12,
-  IRQ_I2S0_TX =		13,
-  IRQ_I2S0_RX =		14,
-  IRQ_UART0_LON =		15,
-  IRQ_UART0_STATUS =	16,
-  IRQ_UART0_ERROR =	17,
-  IRQ_UART1_STATUS =	18,
-  IRQ_UART1_ERROR =	19,
-  IRQ_UART2_STATUS =	20,
-  IRQ_UART2_ERROR =	21,
-  IRQ_ADC0 =		22,
-  IRQ_CMP0 =		23,
-  IRQ_CMP1 =		24,
-  IRQ_FTM0 =		25,
-  IRQ_FTM1 =		26,
-  IRQ_CMT =		27,
-  IRQ_RTC_ALARM =		28,
-  IRQ_RTC_SECOND =	29,
-  IRQ_PIT_CH0 =		30,
-  IRQ_PIT_CH1 =		31,
-  IRQ_PIT_CH2 =		32,
-  IRQ_PIT_CH3 =		33,
-  IRQ_PDB =		34,
-  IRQ_USBOTG =		35,
-  IRQ_USBDCD =		36,
-  IRQ_TSI =		37,
-  IRQ_MCG =		38,
-  IRQ_LPTMR =		39,
-  IRQ_PORTA =		40,
-  IRQ_PORTB =		41,
-  IRQ_PORTC =		42,
-  IRQ_PORTD =		43,
-  IRQ_PORTE =		44,
-  IRQ_SOFTWARE =		45
+	IRQ_DMA_CH0 =		0,
+	IRQ_DMA_CH1 =		1,
+	IRQ_DMA_CH2 =		2,
+	IRQ_DMA_CH3 =		3,
+	IRQ_DMA_ERROR =		4,
+	IRQ_FTFL_COMPLETE =	6,
+	IRQ_FTFL_COLLISION =	7,
+	IRQ_LOW_VOLTAGE =	8,
+	IRQ_LLWU =		9,
+	IRQ_WDOG =		10,
+	IRQ_I2C0 =		11,
+	IRQ_SPI0 =		12,
+	IRQ_I2S0_TX =		13,
+	IRQ_I2S0_RX =		14,
+	IRQ_UART0_LON =		15,
+	IRQ_UART0_STATUS =	16,
+	IRQ_UART0_ERROR =	17,
+	IRQ_UART1_STATUS =	18,
+	IRQ_UART1_ERROR =	19,
+	IRQ_UART2_STATUS =	20,
+	IRQ_UART2_ERROR =	21,
+	IRQ_ADC0 =		22,
+	IRQ_CMP0 =		23,
+	IRQ_CMP1 =		24,
+	IRQ_FTM0 =		25,
+	IRQ_FTM1 =		26,
+	IRQ_CMT =		27,
+	IRQ_RTC_ALARM =		28,
+	IRQ_RTC_SECOND =	29,
+	IRQ_PIT_CH0 =		30,
+	IRQ_PIT_CH1 =		31,
+	IRQ_PIT_CH2 =		32,
+	IRQ_PIT_CH3 =		33,
+	IRQ_PDB =		34,
+	IRQ_USBOTG =		35,
+	IRQ_USBDCD =		36,
+	IRQ_TSI =		37,
+	IRQ_MCG =		38,
+	IRQ_LPTMR =		39,
+	IRQ_PORTA =		40,
+	IRQ_PORTB =		41,
+	IRQ_PORTC =		42,
+	IRQ_PORTD =		43,
+	IRQ_PORTE =		44,
+	IRQ_SOFTWARE =		45
 };
 #define NVIC_NUM_INTERRUPTS	46
 #define DMA_NUM_CHANNELS	4
@@ -146,75 +144,75 @@ enum IRQ_NUMBER_t {
 // Teensy 3.1 & 3.2
 #elif defined(__MK20DX256__)
 enum IRQ_NUMBER_t {
-  IRQ_DMA_CH0 =		0,
-  IRQ_DMA_CH1 =		1,
-  IRQ_DMA_CH2 =		2,
-  IRQ_DMA_CH3 =		3,
-  IRQ_DMA_CH4 =		4,
-  IRQ_DMA_CH5 =		5,
-  IRQ_DMA_CH6 =		6,
-  IRQ_DMA_CH7 =		7,
-  IRQ_DMA_CH8 =		8,
-  IRQ_DMA_CH9 =		9,
-  IRQ_DMA_CH10 =		10,
-  IRQ_DMA_CH11 =		11,
-  IRQ_DMA_CH12 =		12,
-  IRQ_DMA_CH13 =		13,
-  IRQ_DMA_CH14 =		14,
-  IRQ_DMA_CH15 =		15,
-  IRQ_DMA_ERROR =		16,
-  IRQ_FTFL_COMPLETE =	18,
-  IRQ_FTFL_COLLISION =	19,
-  IRQ_LOW_VOLTAGE =	20,
-  IRQ_LLWU =		21,
-  IRQ_WDOG =		22,
-  IRQ_I2C0 =		24,
-  IRQ_I2C1 =		25,
-  IRQ_SPI0 =		26,
-  IRQ_SPI1 =		27,
-  IRQ_CAN_MESSAGE =	29,
-  IRQ_CAN_BUS_OFF =	30,
-  IRQ_CAN_ERROR =		31,
-  IRQ_CAN_TX_WARN =	32,
-  IRQ_CAN_RX_WARN =	33,
-  IRQ_CAN_WAKEUP =	34,
-  IRQ_I2S0_TX =		35,
-  IRQ_I2S0_RX =		36,
-  IRQ_UART0_LON =		44,
-  IRQ_UART0_STATUS =	45,
-  IRQ_UART0_ERROR =	46,
-  IRQ_UART1_STATUS =	47,
-  IRQ_UART1_ERROR =	48,
-  IRQ_UART2_STATUS =	49,
-  IRQ_UART2_ERROR =	50,
-  IRQ_ADC0 =		57,
-  IRQ_ADC1 =		58,
-  IRQ_CMP0 =		59,
-  IRQ_CMP1 =		60,
-  IRQ_CMP2 =		61,
-  IRQ_FTM0 =		62,
-  IRQ_FTM1 =		63,
-  IRQ_FTM2 =		64,
-  IRQ_CMT =		65,
-  IRQ_RTC_ALARM =		66,
-  IRQ_RTC_SECOND =	67,
-  IRQ_PIT_CH0 =		68,
-  IRQ_PIT_CH1 =		69,
-  IRQ_PIT_CH2 =		70,
-  IRQ_PIT_CH3 =		71,
-  IRQ_PDB =		72,
-  IRQ_USBOTG =		73,
-  IRQ_USBDCD =		74,
-  IRQ_DAC0 =		81,
-  IRQ_TSI =		83,
-  IRQ_MCG =		84,
-  IRQ_LPTMR =		85,
-  IRQ_PORTA =		87,
-  IRQ_PORTB =		88,
-  IRQ_PORTC =		89,
-  IRQ_PORTD =		90,
-  IRQ_PORTE =		91,
-  IRQ_SOFTWARE =		94
+	IRQ_DMA_CH0 =		0,
+	IRQ_DMA_CH1 =		1,
+	IRQ_DMA_CH2 =		2,
+	IRQ_DMA_CH3 =		3,
+	IRQ_DMA_CH4 =		4,
+	IRQ_DMA_CH5 =		5,
+	IRQ_DMA_CH6 =		6,
+	IRQ_DMA_CH7 =		7,
+	IRQ_DMA_CH8 =		8,
+	IRQ_DMA_CH9 =		9,
+	IRQ_DMA_CH10 =		10,
+	IRQ_DMA_CH11 =		11,
+	IRQ_DMA_CH12 =		12,
+	IRQ_DMA_CH13 =		13,
+	IRQ_DMA_CH14 =		14,
+	IRQ_DMA_CH15 =		15,
+	IRQ_DMA_ERROR =		16,
+	IRQ_FTFL_COMPLETE =	18,
+	IRQ_FTFL_COLLISION =	19,
+	IRQ_LOW_VOLTAGE =	20,
+	IRQ_LLWU =		21,
+	IRQ_WDOG =		22,
+	IRQ_I2C0 =		24,
+	IRQ_I2C1 =		25,
+	IRQ_SPI0 =		26,
+	IRQ_SPI1 =		27,
+	IRQ_CAN_MESSAGE =	29,
+	IRQ_CAN_BUS_OFF =	30,
+	IRQ_CAN_ERROR =		31,
+	IRQ_CAN_TX_WARN =	32,
+	IRQ_CAN_RX_WARN =	33,
+	IRQ_CAN_WAKEUP =	34,
+	IRQ_I2S0_TX =		35,
+	IRQ_I2S0_RX =		36,
+	IRQ_UART0_LON =		44,
+	IRQ_UART0_STATUS =	45,
+	IRQ_UART0_ERROR =	46,
+	IRQ_UART1_STATUS =	47,
+	IRQ_UART1_ERROR =	48,
+	IRQ_UART2_STATUS =	49,
+	IRQ_UART2_ERROR =	50,
+	IRQ_ADC0 =		57,
+	IRQ_ADC1 =		58,
+	IRQ_CMP0 =		59,
+	IRQ_CMP1 =		60,
+	IRQ_CMP2 =		61,
+	IRQ_FTM0 =		62,
+	IRQ_FTM1 =		63,
+	IRQ_FTM2 =		64,
+	IRQ_CMT =		65,
+	IRQ_RTC_ALARM =		66,
+	IRQ_RTC_SECOND =	67,
+	IRQ_PIT_CH0 =		68,
+	IRQ_PIT_CH1 =		69,
+	IRQ_PIT_CH2 =		70,
+	IRQ_PIT_CH3 =		71,
+	IRQ_PDB =		72,
+	IRQ_USBOTG =		73,
+	IRQ_USBDCD =		74,
+	IRQ_DAC0 =		81,
+	IRQ_TSI =		83,
+	IRQ_MCG =		84,
+	IRQ_LPTMR =		85,
+	IRQ_PORTA =		87,
+	IRQ_PORTB =		88,
+	IRQ_PORTC =		89,
+	IRQ_PORTD =		90,
+	IRQ_PORTE =		91,
+	IRQ_SOFTWARE =		94
 };
 #define NVIC_NUM_INTERRUPTS	95
 #define DMA_NUM_CHANNELS	16
@@ -287,37 +285,37 @@ enum IRQ_NUMBER_t {
 // Teensy-LC
 #elif defined(__MKL26Z64__)
 enum IRQ_NUMBER_t {
-  IRQ_DMA_CH0 =		0,
-  IRQ_DMA_CH1 =		1,
-  IRQ_DMA_CH2 =		2,
-  IRQ_DMA_CH3 =		3,
-  IRQ_FTFA =              5,
-  IRQ_LOW_VOLTAGE =       6,
-  IRQ_LLWU =              7,
-  IRQ_I2C0 =              8,
-  IRQ_I2C1 =              9,
-  IRQ_SPI0 =              10,
-  IRQ_SPI1 =              11,
-  IRQ_UART0_STATUS =      12,
-  IRQ_UART1_STATUS =      13,
-  IRQ_UART2_STATUS =      14,
-  IRQ_ADC0 =              15,
-  IRQ_CMP0 =              16,
-  IRQ_FTM0 =              17,
-  IRQ_FTM1 =              18,
-  IRQ_FTM2 =              19,
-  IRQ_RTC_ALARM =         20,
-  IRQ_RTC_SECOND =        21,
-  IRQ_PIT =               22,
-  IRQ_I2S0 =              23,
-  IRQ_USBOTG =            24,
-  IRQ_DAC0 =              25,
-  IRQ_TSI =               26,
-  IRQ_MCG =               27,
-  IRQ_LPTMR =             28,
-  IRQ_SOFTWARE =		29,  // TODO: verify this works
-  IRQ_PORTA =             30,
-  IRQ_PORTCD =            31
+	IRQ_DMA_CH0 =		0,
+	IRQ_DMA_CH1 =		1,
+	IRQ_DMA_CH2 =		2,
+	IRQ_DMA_CH3 =		3,
+        IRQ_FTFA =              5,
+        IRQ_LOW_VOLTAGE =       6,
+        IRQ_LLWU =              7,
+        IRQ_I2C0 =              8,
+        IRQ_I2C1 =              9,
+        IRQ_SPI0 =              10,
+        IRQ_SPI1 =              11,
+        IRQ_UART0_STATUS =      12,
+        IRQ_UART1_STATUS =      13,
+        IRQ_UART2_STATUS =      14,
+        IRQ_ADC0 =              15,
+        IRQ_CMP0 =              16,
+        IRQ_FTM0 =              17,
+        IRQ_FTM1 =              18,
+        IRQ_FTM2 =              19,
+        IRQ_RTC_ALARM =         20,
+        IRQ_RTC_SECOND =        21,
+        IRQ_PIT =               22,
+        IRQ_I2S0 =              23,
+        IRQ_USBOTG =            24,
+        IRQ_DAC0 =              25,
+        IRQ_TSI =               26,
+        IRQ_MCG =               27,
+        IRQ_LPTMR =             28,
+	IRQ_SOFTWARE =		29,  // TODO: verify this works
+        IRQ_PORTA =             30,
+        IRQ_PORTCD =            31
 };
 #define NVIC_NUM_INTERRUPTS     32
 #define DMA_NUM_CHANNELS        4
@@ -378,90 +376,90 @@ enum IRQ_NUMBER_t {
 
 #elif defined(__MK64FX512__)
 enum IRQ_NUMBER_t {
-  IRQ_DMA_CH0 =		0,
-  IRQ_DMA_CH1 =		1,
-  IRQ_DMA_CH2 =		2,
-  IRQ_DMA_CH3 =		3,
-  IRQ_DMA_CH4 =		4,
-  IRQ_DMA_CH5 =		5,
-  IRQ_DMA_CH6 =		6,
-  IRQ_DMA_CH7 =		7,
-  IRQ_DMA_CH8 =		8,
-  IRQ_DMA_CH9 =		9,
-  IRQ_DMA_CH10 =		10,
-  IRQ_DMA_CH11 =		11,
-  IRQ_DMA_CH12 =		12,
-  IRQ_DMA_CH13 =		13,
-  IRQ_DMA_CH14 =		14,
-  IRQ_DMA_CH15 =		15,
-  IRQ_DMA_ERROR =		16,
-  IRQ_MCM =		17,
-  IRQ_FTFL_COMPLETE =	18,
-  IRQ_FTFL_COLLISION =	19,
-  IRQ_LOW_VOLTAGE =	20,
-  IRQ_LLWU =		21,
-  IRQ_WDOG =		22,
-  IRQ_RNG =		23,
-  IRQ_I2C0 =		24,
-  IRQ_I2C1 =		25,
-  IRQ_SPI0 =		26,
-  IRQ_SPI1 =		27,
-  IRQ_I2S0_TX =		28,
-  IRQ_I2S0_RX =		29,
-  IRQ_UART0_STATUS =	31,
-  IRQ_UART0_ERROR =	32,
-  IRQ_UART1_STATUS =	33,
-  IRQ_UART1_ERROR =	34,
-  IRQ_UART2_STATUS =	35,
-  IRQ_UART2_ERROR =	36,
-  IRQ_UART3_STATUS =	37,
-  IRQ_UART3_ERROR =	38,
-  IRQ_ADC0 =		39,
-  IRQ_CMP0 =		40,
-  IRQ_CMP1 =		41,
-  IRQ_FTM0 =		42,
-  IRQ_FTM1 =		43,
-  IRQ_FTM2 =		44,
-  IRQ_CMT =		45,
-  IRQ_RTC_ALARM =		46,
-  IRQ_RTC_SECOND =	47,
-  IRQ_PIT_CH0 =		48,
-  IRQ_PIT_CH1 =		49,
-  IRQ_PIT_CH2 =		50,
-  IRQ_PIT_CH3 =		51,
-  IRQ_PDB =		52,
-  IRQ_USBOTG =		53,
-  IRQ_USBDCD =		54,
-  IRQ_DAC0 =		56,
-  IRQ_MCG =		57,
-  IRQ_LPTMR =		58,
-  IRQ_PORTA =		59,
-  IRQ_PORTB =		60,
-  IRQ_PORTC =		61,
-  IRQ_PORTD =		62,
-  IRQ_PORTE =		63,
-  IRQ_SOFTWARE =		64,
-  IRQ_SPI2 =		65,
-  IRQ_UART4_STATUS =	66,
-  IRQ_UART4_ERROR =	67,
-  IRQ_UART5_STATUS =	68,
-  IRQ_UART5_ERROR =	69,
-  IRQ_CMP2 =		70,
-  IRQ_FTM3 =		71,
-  IRQ_DAC1 =		72,
-  IRQ_ADC1 =		73,
-  IRQ_I2C2 =		74,
-  IRQ_CAN0_MESSAGE =	75,
-  IRQ_CAN0_BUS_OFF =	76,
-  IRQ_CAN0_ERROR =	77,
-  IRQ_CAN0_TX_WARN =	78,
-  IRQ_CAN0_RX_WARN =	79,
-  IRQ_CAN0_WAKEUP =	80,
-  IRQ_SDHC =		81,
-  IRQ_ENET_TIMER =	82,
-  IRQ_ENET_TX =		83,
-  IRQ_ENET_RX =		84,
-  IRQ_ENET_ERROR =	85
+	IRQ_DMA_CH0 =		0,
+	IRQ_DMA_CH1 =		1,
+	IRQ_DMA_CH2 =		2,
+	IRQ_DMA_CH3 =		3,
+	IRQ_DMA_CH4 =		4,
+	IRQ_DMA_CH5 =		5,
+	IRQ_DMA_CH6 =		6,
+	IRQ_DMA_CH7 =		7,
+	IRQ_DMA_CH8 =		8,
+	IRQ_DMA_CH9 =		9,
+	IRQ_DMA_CH10 =		10,
+	IRQ_DMA_CH11 =		11,
+	IRQ_DMA_CH12 =		12,
+	IRQ_DMA_CH13 =		13,
+	IRQ_DMA_CH14 =		14,
+	IRQ_DMA_CH15 =		15,
+	IRQ_DMA_ERROR =		16,
+	IRQ_MCM =		17,
+	IRQ_FTFL_COMPLETE =	18,
+	IRQ_FTFL_COLLISION =	19,
+	IRQ_LOW_VOLTAGE =	20,
+	IRQ_LLWU =		21,
+	IRQ_WDOG =		22,
+	IRQ_RNG =		23,
+	IRQ_I2C0 =		24,
+	IRQ_I2C1 =		25,
+	IRQ_SPI0 =		26,
+	IRQ_SPI1 =		27,
+	IRQ_I2S0_TX =		28,
+	IRQ_I2S0_RX =		29,
+	IRQ_UART0_STATUS =	31,
+	IRQ_UART0_ERROR =	32,
+	IRQ_UART1_STATUS =	33,
+	IRQ_UART1_ERROR =	34,
+	IRQ_UART2_STATUS =	35,
+	IRQ_UART2_ERROR =	36,
+	IRQ_UART3_STATUS =	37,
+	IRQ_UART3_ERROR =	38,
+	IRQ_ADC0 =		39,
+	IRQ_CMP0 =		40,
+	IRQ_CMP1 =		41,
+	IRQ_FTM0 =		42,
+	IRQ_FTM1 =		43,
+	IRQ_FTM2 =		44,
+	IRQ_CMT =		45,
+	IRQ_RTC_ALARM =		46,
+	IRQ_RTC_SECOND =	47,
+	IRQ_PIT_CH0 =		48,
+	IRQ_PIT_CH1 =		49,
+	IRQ_PIT_CH2 =		50,
+	IRQ_PIT_CH3 =		51,
+	IRQ_PDB =		52,
+	IRQ_USBOTG =		53,
+	IRQ_USBDCD =		54,
+	IRQ_DAC0 =		56,
+	IRQ_MCG =		57,
+	IRQ_LPTMR =		58,
+	IRQ_PORTA =		59,
+	IRQ_PORTB =		60,
+	IRQ_PORTC =		61,
+	IRQ_PORTD =		62,
+	IRQ_PORTE =		63,
+	IRQ_SOFTWARE =		64,
+	IRQ_SPI2 =		65,
+	IRQ_UART4_STATUS =	66,
+	IRQ_UART4_ERROR =	67,
+	IRQ_UART5_STATUS =	68,
+	IRQ_UART5_ERROR =	69,
+	IRQ_CMP2 =		70,
+	IRQ_FTM3 =		71,
+	IRQ_DAC1 =		72,
+	IRQ_ADC1 =		73,
+	IRQ_I2C2 =		74,
+	IRQ_CAN0_MESSAGE =	75,
+	IRQ_CAN0_BUS_OFF =	76,
+	IRQ_CAN0_ERROR =	77,
+	IRQ_CAN0_TX_WARN =	78,
+	IRQ_CAN0_RX_WARN =	79,
+	IRQ_CAN0_WAKEUP =	80,
+	IRQ_SDHC =		81,
+	IRQ_ENET_TIMER =	82,
+	IRQ_ENET_TX =		83,
+	IRQ_ENET_RX =		84,
+	IRQ_ENET_ERROR =	85
 };
 #define NVIC_NUM_INTERRUPTS	86
 #define DMA_NUM_CHANNELS	16
@@ -481,8 +479,8 @@ enum IRQ_NUMBER_t {
 #define DMAMUX_SOURCE_I2S0_TX		13
 #define DMAMUX_SOURCE_SPI0_RX		14
 #define DMAMUX_SOURCE_SPI0_TX		15
-#define DMAMUX_SOURCE_SPI1_RX		16
-#define DMAMUX_SOURCE_SPI1_TX		17
+#define DMAMUX_SOURCE_SPI1		16
+#define DMAMUX_SOURCE_SPI2		17
 #define DMAMUX_SOURCE_I2C0		18
 #define DMAMUX_SOURCE_I2C1		19
 #define DMAMUX_SOURCE_I2C2		19
@@ -558,102 +556,102 @@ enum IRQ_NUMBER_t {
 #elif defined(__MK66FX1M0__)
 // https://forum.pjrc.com/threads/24633-Any-Chance-of-a-Teensy-3-1?p=78655&viewfull=1#post78655
 enum IRQ_NUMBER_t {
-  IRQ_DMA_CH0 =		0,
-  IRQ_DMA_CH1 =		1,
-  IRQ_DMA_CH2 =		2,
-  IRQ_DMA_CH3 =		3,
-  IRQ_DMA_CH4 =		4,
-  IRQ_DMA_CH5 =		5,
-  IRQ_DMA_CH6 =		6,
-  IRQ_DMA_CH7 =		7,
-  IRQ_DMA_CH8 =		8,
-  IRQ_DMA_CH9 =		9,
-  IRQ_DMA_CH10 =		10,
-  IRQ_DMA_CH11 =		11,
-  IRQ_DMA_CH12 =		12,
-  IRQ_DMA_CH13 =		13,
-  IRQ_DMA_CH14 =		14,
-  IRQ_DMA_CH15 =		15,
-  IRQ_DMA_ERROR =		16,
-  IRQ_MCM =		17,
-  IRQ_FTFL_COMPLETE =	18,
-  IRQ_FTFL_COLLISION =	19,
-  IRQ_LOW_VOLTAGE =	20,
-  IRQ_LLWU =		21,
-  IRQ_WDOG =		22,
-  IRQ_RNG =		23,
-  IRQ_I2C0 =		24,
-  IRQ_I2C1 =		25,
-  IRQ_SPI0 =		26,
-  IRQ_SPI1 =		27,
-  IRQ_I2S0_TX =		28,
-  IRQ_I2S0_RX =		29,
-  IRQ_UART0_STATUS =	31,
-  IRQ_UART0_ERROR =	32,
-  IRQ_UART1_STATUS =	33,
-  IRQ_UART1_ERROR =	34,
-  IRQ_UART2_STATUS =	35,
-  IRQ_UART2_ERROR =	36,
-  IRQ_UART3_STATUS =	37,
-  IRQ_UART3_ERROR =	38,
-  IRQ_ADC0 =		39,
-  IRQ_CMP0 =		40,
-  IRQ_CMP1 =		41,
-  IRQ_FTM0 =		42,
-  IRQ_FTM1 =		43,
-  IRQ_FTM2 =		44,
-  IRQ_CMT =		45,
-  IRQ_RTC_ALARM =		46,
-  IRQ_RTC_SECOND =	47,
-  IRQ_PIT_CH0 =		48,
-  IRQ_PIT_CH1 =		49,
-  IRQ_PIT_CH2 =		50,
-  IRQ_PIT_CH3 =		51,
-  IRQ_PDB =		52,
-  IRQ_USBOTG =		53,
-  IRQ_USBDCD =		54,
-  IRQ_DAC0 =		56,
-  IRQ_MCG =		57,
-  IRQ_LPTMR =		58,
-  IRQ_PORTA =		59,
-  IRQ_PORTB =		60,
-  IRQ_PORTC =		61,
-  IRQ_PORTD =		62,
-  IRQ_PORTE =		63,
-  IRQ_SOFTWARE =		64,
-  IRQ_SPI2 =		65,
-  IRQ_UART4_STATUS =	66,
-  IRQ_UART4_ERROR =	67,
-  IRQ_CMP2 =		70,
-  IRQ_FTM3 =		71,
-  IRQ_DAC1 =		72,
-  IRQ_ADC1 =		73,
-  IRQ_I2C2 =		74,
-  IRQ_CAN0_MESSAGE =	75,
-  IRQ_CAN0_BUS_OFF =	76,
-  IRQ_CAN0_ERROR =	77,
-  IRQ_CAN0_TX_WARN =	78,
-  IRQ_CAN0_RX_WARN =	79,
-  IRQ_CAN0_WAKEUP =	80,
-  IRQ_SDHC =		81,
-  IRQ_ENET_TIMER =	82,
-  IRQ_ENET_TX =		83,
-  IRQ_ENET_RX =		84,
-  IRQ_ENET_ERROR =	85,
-  IRQ_LPUART0 =		86,
-  IRQ_TSI =		87,
-  IRQ_TPM1 =		88,
-  IRQ_TPM2 =		89,
-  IRQ_USBHS_PHY =		90,
-  IRQ_I2C3 =		91,
-  IRQ_CMP3 =		92,
-  IRQ_USBHS =		93,
-  IRQ_CAN1_MESSAGE =	94,
-  IRQ_CAN1_BUS_OFF =	95,
-  IRQ_CAN1_ERROR =	96,
-  IRQ_CAN1_TX_WARN =	97,
-  IRQ_CAN1_RX_WARN =	98,
-  IRQ_CAN1_WAKEUP =	99
+	IRQ_DMA_CH0 =		0,
+	IRQ_DMA_CH1 =		1,
+	IRQ_DMA_CH2 =		2,
+	IRQ_DMA_CH3 =		3,
+	IRQ_DMA_CH4 =		4,
+	IRQ_DMA_CH5 =		5,
+	IRQ_DMA_CH6 =		6,
+	IRQ_DMA_CH7 =		7,
+	IRQ_DMA_CH8 =		8,
+	IRQ_DMA_CH9 =		9,
+	IRQ_DMA_CH10 =		10,
+	IRQ_DMA_CH11 =		11,
+	IRQ_DMA_CH12 =		12,
+	IRQ_DMA_CH13 =		13,
+	IRQ_DMA_CH14 =		14,
+	IRQ_DMA_CH15 =		15,
+	IRQ_DMA_ERROR =		16,
+	IRQ_MCM =		17,
+	IRQ_FTFL_COMPLETE =	18,
+	IRQ_FTFL_COLLISION =	19,
+	IRQ_LOW_VOLTAGE =	20,
+	IRQ_LLWU =		21,
+	IRQ_WDOG =		22,
+	IRQ_RNG =		23,
+	IRQ_I2C0 =		24,
+	IRQ_I2C1 =		25,
+	IRQ_SPI0 =		26,
+	IRQ_SPI1 =		27,
+	IRQ_I2S0_TX =		28,
+	IRQ_I2S0_RX =		29,
+	IRQ_UART0_STATUS =	31,
+	IRQ_UART0_ERROR =	32,
+	IRQ_UART1_STATUS =	33,
+	IRQ_UART1_ERROR =	34,
+	IRQ_UART2_STATUS =	35,
+	IRQ_UART2_ERROR =	36,
+	IRQ_UART3_STATUS =	37,
+	IRQ_UART3_ERROR =	38,
+	IRQ_ADC0 =		39,
+	IRQ_CMP0 =		40,
+	IRQ_CMP1 =		41,
+	IRQ_FTM0 =		42,
+	IRQ_FTM1 =		43,
+	IRQ_FTM2 =		44,
+	IRQ_CMT =		45,
+	IRQ_RTC_ALARM =		46,
+	IRQ_RTC_SECOND =	47,
+	IRQ_PIT_CH0 =		48,
+	IRQ_PIT_CH1 =		49,
+	IRQ_PIT_CH2 =		50,
+	IRQ_PIT_CH3 =		51,
+	IRQ_PDB =		52,
+	IRQ_USBOTG =		53,
+	IRQ_USBDCD =		54,
+	IRQ_DAC0 =		56,
+	IRQ_MCG =		57,
+	IRQ_LPTMR =		58,
+	IRQ_PORTA =		59,
+	IRQ_PORTB =		60,
+	IRQ_PORTC =		61,
+	IRQ_PORTD =		62,
+	IRQ_PORTE =		63,
+	IRQ_SOFTWARE =		64,
+	IRQ_SPI2 =		65,
+	IRQ_UART4_STATUS =	66,
+	IRQ_UART4_ERROR =	67,
+	IRQ_CMP2 =		70,
+	IRQ_FTM3 =		71,
+	IRQ_DAC1 =		72,
+	IRQ_ADC1 =		73,
+	IRQ_I2C2 =		74,
+	IRQ_CAN0_MESSAGE =	75,
+	IRQ_CAN0_BUS_OFF =	76,
+	IRQ_CAN0_ERROR =	77,
+	IRQ_CAN0_TX_WARN =	78,
+	IRQ_CAN0_RX_WARN =	79,
+	IRQ_CAN0_WAKEUP =	80,
+	IRQ_SDHC =		81,
+	IRQ_ENET_TIMER =	82,
+	IRQ_ENET_TX =		83,
+	IRQ_ENET_RX =		84,
+	IRQ_ENET_ERROR =	85,
+	IRQ_LPUART0 =		86,
+	IRQ_TSI =		87,
+	IRQ_TPM1 =		88,
+	IRQ_TPM2 =		89,
+	IRQ_USBHS_PHY =		90,
+	IRQ_I2C3 =		91,
+	IRQ_CMP3 =		92,
+	IRQ_USBHS =		93,
+	IRQ_CAN1_MESSAGE =	94,
+	IRQ_CAN1_BUS_OFF =	95,
+	IRQ_CAN1_ERROR =	96,
+	IRQ_CAN1_TX_WARN =	97,
+	IRQ_CAN1_RX_WARN =	98,
+	IRQ_CAN1_WAKEUP =	99
 };
 #define NVIC_NUM_INTERRUPTS	100
 #define DMA_NUM_CHANNELS	32
@@ -765,96 +763,96 @@ enum IRQ_NUMBER_t {
 
 
 #if (F_CPU == 240000000)
-#define F_PLL 240000000
-#ifndef F_BUS
-#define F_BUS 60000000
-//#define F_BUS 80000000   // uncomment these to try peripheral overclocking
-//#define F_BUS 120000000  // all the usual overclocking caveats apply...
-#endif
-#define F_MEM 30000000
+ #define F_PLL 240000000
+ #ifndef F_BUS
+ #define F_BUS 60000000
+ //#define F_BUS 80000000   // uncomment these to try peripheral overclocking
+ //#define F_BUS 120000000  // all the usual overclocking caveats apply...
+ #endif
+ #define F_MEM 30000000
 #elif (F_CPU == 216000000)
-#define F_PLL 216000000
-#ifndef F_BUS
-#define F_BUS 54000000
-//#define F_BUS 72000000
-//#define F_BUS 108000000
-#endif
-#define F_MEM 27000000
+ #define F_PLL 216000000
+ #ifndef F_BUS
+ #define F_BUS 54000000
+ //#define F_BUS 72000000
+ //#define F_BUS 108000000
+ #endif
+ #define F_MEM 27000000
 #elif (F_CPU == 192000000)
-#define F_PLL 192000000
-#ifndef F_BUS
-#define F_BUS 48000000
-//#define F_BUS 64000000
-//#define F_BUS 96000000
-#endif
-#define F_MEM 27428571
+ #define F_PLL 192000000
+ #ifndef F_BUS
+ #define F_BUS 48000000
+ //#define F_BUS 64000000
+ //#define F_BUS 96000000
+ #endif
+ #define F_MEM 27428571
 #elif (F_CPU == 180000000)
-#define F_PLL 180000000
-#ifndef F_BUS
-#define F_BUS 60000000
-//#define F_BUS 90000000
-#endif
-#define F_MEM 25714286
+ #define F_PLL 180000000
+ #ifndef F_BUS
+ #define F_BUS 60000000
+ //#define F_BUS 90000000
+ #endif
+ #define F_MEM 25714286
 #elif (F_CPU == 168000000)
-#define F_PLL 168000000
-#define F_BUS 56000000
-#define F_MEM 28000000
+ #define F_PLL 168000000
+ #define F_BUS 56000000
+ #define F_MEM 28000000
 #elif (F_CPU == 144000000)
-#define F_PLL 144000000
-#ifndef F_BUS
-#define F_BUS 48000000
-//#define F_BUS 72000000
-#endif
-#define F_MEM 28800000
+ #define F_PLL 144000000
+ #ifndef F_BUS
+ #define F_BUS 48000000
+ //#define F_BUS 72000000
+ #endif
+ #define F_MEM 28800000
 #elif (F_CPU == 120000000)
-#define F_PLL 120000000
-#ifndef F_BUS
-#define F_BUS 60000000
-//#define F_BUS 120000000
-#endif
-#define F_MEM 24000000
+ #define F_PLL 120000000
+ #ifndef F_BUS
+ #define F_BUS 60000000
+ //#define F_BUS 120000000
+ #endif
+ #define F_MEM 24000000
 #elif (F_CPU == 96000000)
-#define F_PLL 96000000
-#ifndef F_BUS
-#define F_BUS 48000000
-//#define F_BUS 96000000
-#endif
-#define F_MEM 24000000
+ #define F_PLL 96000000
+ #ifndef F_BUS
+ #define F_BUS 48000000
+ //#define F_BUS 96000000
+ #endif
+ #define F_MEM 24000000
 #elif (F_CPU == 72000000)
-#define F_PLL 72000000
-#ifndef F_BUS
-#define F_BUS 36000000
-//#define F_BUS 72000000
-#endif
-#define F_MEM 24000000
+ #define F_PLL 72000000
+ #ifndef F_BUS
+ #define F_BUS 36000000
+ //#define F_BUS 72000000
+ #endif
+ #define F_MEM 24000000
 #elif (F_CPU == 48000000)
-#define F_PLL 96000000
-#if defined(KINETISK)
-#define F_BUS 48000000
-#elif defined(KINETISL)
-#define F_BUS 24000000
-#endif
-#define F_MEM 24000000
+ #define F_PLL 96000000
+ #if defined(KINETISK)
+ #define F_BUS 48000000
+ #elif defined(KINETISL)
+ #define F_BUS 24000000
+ #endif
+ #define F_MEM 24000000
 #elif (F_CPU == 24000000)
-#define F_PLL 96000000
-#define F_BUS 24000000
-#define F_MEM 24000000
+ #define F_PLL 96000000
+ #define F_BUS 24000000
+ #define F_MEM 24000000
 #elif (F_CPU == 16000000)
-#define F_PLL 16000000
-#define F_BUS 16000000
-#define F_MEM 16000000
+ #define F_PLL 16000000
+ #define F_BUS 16000000
+ #define F_MEM 16000000
 #elif (F_CPU == 8000000)
-#define F_PLL 8000000
-#define F_BUS 8000000
-#define F_MEM 8000000
+ #define F_PLL 8000000
+ #define F_BUS 8000000
+ #define F_MEM 8000000
 #elif (F_CPU == 4000000)
-#define F_PLL 4000000
-#define F_BUS 4000000
-#define F_MEM 4000000
+ #define F_PLL 4000000
+ #define F_BUS 4000000
+ #define F_MEM 4000000
 #elif (F_CPU == 2000000)
-#define F_PLL 2000000
-#define F_BUS 2000000
-#define F_MEM 1000000
+ #define F_PLL 2000000
+ #define F_BUS 2000000
+ #define F_MEM 1000000
 #endif
 
 
@@ -911,6 +909,9 @@ enum IRQ_NUMBER_t {
 #define PORTA_GPCLR		(*(volatile uint32_t *)0x40049080) // Global Pin Control Low Register
 #define PORTA_GPCHR		(*(volatile uint32_t *)0x40049084) // Global Pin Control High Register
 #define PORTA_ISFR		(*(volatile uint32_t *)0x400490A0) // Interrupt Status Flag Register
+#define PORTA_DFER		(*(volatile uint32_t *)0x400490C0) // Digital Filter Enable
+#define PORTA_DFCR		(*(volatile uint32_t *)0x400490C4) // Digital Filter Clock
+#define PORTA_DFWR		(*(volatile uint32_t *)0x400490C8) // Digital Filter Width
 #define PORTB_PCR0		(*(volatile uint32_t *)0x4004A000) // Pin Control Register n
 #define PORTB_PCR1		(*(volatile uint32_t *)0x4004A004) // Pin Control Register n
 #define PORTB_PCR2		(*(volatile uint32_t *)0x4004A008) // Pin Control Register n
@@ -946,6 +947,9 @@ enum IRQ_NUMBER_t {
 #define PORTB_GPCLR		(*(volatile uint32_t *)0x4004A080) // Global Pin Control Low Register
 #define PORTB_GPCHR		(*(volatile uint32_t *)0x4004A084) // Global Pin Control High Register
 #define PORTB_ISFR		(*(volatile uint32_t *)0x4004A0A0) // Interrupt Status Flag Register
+#define PORTB_DFER		(*(volatile uint32_t *)0x4004A0C0) // Digital Filter Enable
+#define PORTB_DFCR		(*(volatile uint32_t *)0x4004A0C4) // Digital Filter Clock
+#define PORTB_DFWR		(*(volatile uint32_t *)0x4004A0C8) // Digital Filter Width
 #define PORTC_PCR0		(*(volatile uint32_t *)0x4004B000) // Pin Control Register n
 #define PORTC_PCR1		(*(volatile uint32_t *)0x4004B004) // Pin Control Register n
 #define PORTC_PCR2		(*(volatile uint32_t *)0x4004B008) // Pin Control Register n
@@ -981,6 +985,9 @@ enum IRQ_NUMBER_t {
 #define PORTC_GPCLR		(*(volatile uint32_t *)0x4004B080) // Global Pin Control Low Register
 #define PORTC_GPCHR		(*(volatile uint32_t *)0x4004B084) // Global Pin Control High Register
 #define PORTC_ISFR		(*(volatile uint32_t *)0x4004B0A0) // Interrupt Status Flag Register
+#define PORTC_DFER		(*(volatile uint32_t *)0x4004B0C0) // Digital Filter Enable
+#define PORTC_DFCR		(*(volatile uint32_t *)0x4004B0C4) // Digital Filter Clock
+#define PORTC_DFWR		(*(volatile uint32_t *)0x4004B0C8) // Digital Filter Width
 #define PORTD_PCR0		(*(volatile uint32_t *)0x4004C000) // Pin Control Register n
 #define PORTD_PCR1		(*(volatile uint32_t *)0x4004C004) // Pin Control Register n
 #define PORTD_PCR2		(*(volatile uint32_t *)0x4004C008) // Pin Control Register n
@@ -1016,6 +1023,9 @@ enum IRQ_NUMBER_t {
 #define PORTD_GPCLR		(*(volatile uint32_t *)0x4004C080) // Global Pin Control Low Register
 #define PORTD_GPCHR		(*(volatile uint32_t *)0x4004C084) // Global Pin Control High Register
 #define PORTD_ISFR		(*(volatile uint32_t *)0x4004C0A0) // Interrupt Status Flag Register
+#define PORTD_DFER		(*(volatile uint32_t *)0x4004C0C0) // Digital Filter Enable
+#define PORTD_DFCR		(*(volatile uint32_t *)0x4004C0C4) // Digital Filter Clock
+#define PORTD_DFWR		(*(volatile uint32_t *)0x4004C0C8) // Digital Filter Width
 #define PORTE_PCR0		(*(volatile uint32_t *)0x4004D000) // Pin Control Register n
 #define PORTE_PCR1		(*(volatile uint32_t *)0x4004D004) // Pin Control Register n
 #define PORTE_PCR2		(*(volatile uint32_t *)0x4004D008) // Pin Control Register n
@@ -1051,6 +1061,9 @@ enum IRQ_NUMBER_t {
 #define PORTE_GPCLR		(*(volatile uint32_t *)0x4004D080) // Global Pin Control Low Register
 #define PORTE_GPCHR		(*(volatile uint32_t *)0x4004D084) // Global Pin Control High Register
 #define PORTE_ISFR		(*(volatile uint32_t *)0x4004D0A0) // Interrupt Status Flag Register
+#define PORTE_DFER		(*(volatile uint32_t *)0x4004D0C0) // Digital Filter Enable
+#define PORTE_DFCR		(*(volatile uint32_t *)0x4004D0C4) // Digital Filter Clock
+#define PORTE_DFWR		(*(volatile uint32_t *)0x4004D0C8) // Digital Filter Width
 
 // System Integration Module (SIM)
 
@@ -1234,8 +1247,8 @@ enum IRQ_NUMBER_t {
 #define SIM_CLKDIV1_OUTDIV3(n)		((uint32_t)(((n) & 0x0F) << 20)) // divide value for the flexbus clock
 #define SIM_CLKDIV1_OUTDIV4(n)		((uint32_t)(((n) & 0x0F) << 16)) // divide value for the flash clock
 #define SIM_CLKDIV1_OUTDIVS(n1, n2, n3, n4) \
-  (SIM_CLKDIV1_OUTDIV1(n1) | SIM_CLKDIV1_OUTDIV2(n2) | \
-  SIM_CLKDIV1_OUTDIV3(n3) | SIM_CLKDIV1_OUTDIV4(n4))
+					(SIM_CLKDIV1_OUTDIV1(n1) | SIM_CLKDIV1_OUTDIV2(n2) | \
+					SIM_CLKDIV1_OUTDIV3(n3) | SIM_CLKDIV1_OUTDIV4(n4))
 #define SIM_CLKDIV2		(*(volatile uint32_t *)0x40048048) // System Clock Divider Register 2
 #define SIM_CLKDIV2_USBDIV(n)		((uint32_t)(((n) & 0x07) << 1))
 #define SIM_CLKDIV2_USBFRAC		((uint32_t)0x01)
@@ -1296,6 +1309,15 @@ enum IRQ_NUMBER_t {
 #define SMC_VLLSCTRL		(*(volatile uint8_t  *)0x4007E002) // VLLS Control Register
 #define SMC_VLLSCTRL_PORPO		((uint8_t)0x20)			// POR Power Option
 #define SMC_VLLSCTRL_VLLSM(n)		((uint8_t)((n) & 0x07))		// VLLS Mode Control
+
+#if defined(__MK66FX1M0__)
+#define SMC_STOPCTRL			SMC_VLLSCTRL // Stop Control Register (compatible to SMC_VLLSCTRL)
+#define SMC_STOPCTRL_PSTOPO(n)	((uint8_t)(((n) & 0x03) << 6)) 		// Partial Stop Option
+#define SMC_STOPCTRL_PORPO		SMC_VLLSCTRL_PORPO		// POR Power Option
+#define SMC_STOPCTRL_RAM2PO		((uint8_t)0x10)			// RAM2 Power Option
+#define SMC_STOPCTRL_LLSM(n)		SMC_VLLSCTRL_VLLSM(n)		// VLLS Mode Control
+#endif
+
 #define SMC_PMSTAT		(*(volatile uint8_t  *)0x4007E003) // Power Mode Status Register
 #define SMC_PMSTAT_RUN			((uint8_t)0x01)			// Current power mode is RUN
 #define SMC_PMSTAT_STOP			((uint8_t)0x02)			// Current power mode is STOP
@@ -1329,6 +1351,10 @@ enum IRQ_NUMBER_t {
 
 #if defined(HAS_KINETIS_LLWU_32CH)
 #define LLWU_PE1		(*(volatile uint8_t  *)0x4007C000) // LLWU Pin Enable 1 register
+#define LLWU_PE_WUPE_PIN_DISABLE	((uint8_t)0x00)		// Disable pin as wakeup pin
+#define LLWU_PE_WUPE_PIN_RISING		((uint8_t)0x01)		// Enable pin rising edge detect
+#define LLWU_PE_WUPE_PIN_FALLING	((uint8_t)0x10)		// Enable pin falling edge detect
+#define LLWU_PE_WUPE_PIN_ANY		((uint8_t)0x11)		// Enable pin with any change detect
 #define LLWU_PE1_WUPE0(n)       ((uint8_t)((n) & 0x03)) // Wakeup Pin Enable For LLWU_P0
 #define LLWU_PE1_WUPE1(n)       ((uint8_t)(((n) & 0x03) << 2)) // Wakeup Pin Enable For LLWU_P1
 #define LLWU_PE1_WUPE2(n)       ((uint8_t)(((n) & 0x03) << 4)) // Wakeup Pin Enable For LLWU_P2
@@ -1428,6 +1454,10 @@ enum IRQ_NUMBER_t {
 #define LLWU_FILT4		(*(volatile uint8_t  *)0x4007C011) // LLWU Pin Filter 4 register
 #elif defined(HAS_KINETIS_LLWU_16CH)
 #define LLWU_PE1		(*(volatile uint8_t  *)0x4007C000) // LLWU Pin Enable 1 register
+#define LLWU_PE_WUPE_PIN_DISABLE	((uint8_t)0x00)		// Disable pin as wakeup pin
+#define LLWU_PE_WUPE_PIN_RISING		((uint8_t)0x01)		// Enable pin rising edge detect
+#define LLWU_PE_WUPE_PIN_FALLING	((uint8_t)0x10)		// Enable pin falling edge detect
+#define LLWU_PE_WUPE_PIN_ANY		((uint8_t)0x11)		// Enable pin with any change detect
 #define LLWU_PE1_WUPE0(n)       ((uint8_t)((n) & 0x03)) // Wakeup Pin Enable For LLWU_P0
 #define LLWU_PE1_WUPE1(n)       ((uint8_t)(((n) & 0x03) << 2)) // Wakeup Pin Enable For LLWU_P1
 #define LLWU_PE1_WUPE2(n)       ((uint8_t)(((n) & 0x03) << 4)) // Wakeup Pin Enable For LLWU_P2
@@ -2587,26 +2617,26 @@ enum IRQ_NUMBER_t {
 // Multipurpose Clock Generator (MCG)
 
 typedef struct {
-  volatile uint8_t C1;
-  volatile uint8_t C2;
-  volatile uint8_t C3;
-  volatile uint8_t C4;
-  volatile uint8_t C5;
-  volatile uint8_t C6;
-  volatile uint8_t S;
-  volatile uint8_t unused1;
-  volatile uint8_t SC;
-  volatile uint8_t unused2;
-  volatile uint8_t ATCVH;
-  volatile uint8_t ATCVL;
-  volatile uint8_t C7;
-  volatile uint8_t C8;
-  volatile uint8_t C9;
-  volatile uint8_t unused3;
-  volatile uint8_t C11;
-  volatile uint8_t C12;
-  volatile uint8_t S2;
-  volatile uint8_t T3;
+	volatile uint8_t C1;
+	volatile uint8_t C2;
+	volatile uint8_t C3;
+	volatile uint8_t C4;
+	volatile uint8_t C5;
+	volatile uint8_t C6;
+	volatile uint8_t S;
+	volatile uint8_t unused1;
+	volatile uint8_t SC;
+	volatile uint8_t unused2;
+	volatile uint8_t ATCVH;
+	volatile uint8_t ATCVL;
+	volatile uint8_t C7;
+	volatile uint8_t C8;
+	volatile uint8_t C9;
+	volatile uint8_t unused3;
+	volatile uint8_t C11;
+	volatile uint8_t C12;
+	volatile uint8_t S2;
+	volatile uint8_t T3;
 } KINETIS_MCG_t;
 #define KINETIS_MCG		(*(KINETIS_MCG_t *)0x40064000)
 #define MCG_C1                  (KINETIS_MCG.C1)		// 40064000  MCG Control 1 Register
@@ -2765,6 +2795,8 @@ typedef struct {
 
 // Random Number Generator Accelerator (RNGA)
 
+// For info about using RNGA and the quality of its results:
+// https://forum.pjrc.com/threads/48745-Teensy-3-6-Random-Number-Generator
 #define RNG_CR			(*(volatile uint32_t *)0x40029000) // RNGA Control Register
 #define RNG_SR			(*(volatile uint32_t *)0x40029004) // RNGA Status Register
 #define RNG_ER			(*(volatile uint32_t *)0x40029008) // RNGA Entropy Register
@@ -2880,6 +2912,9 @@ typedef struct {
 #define DAC0_DAT14L		(*(volatile uint8_t  *)0x400CC01C) // DAC Data Low Register
 #define DAC0_DAT15L		(*(volatile uint8_t  *)0x400CC01E) // DAC Data Low Register
 #define DAC0_SR			(*(volatile uint8_t  *)0x400CC020) // DAC Status Register
+#define DAC_SR_DACBFWMF			0x04				// Buffer Watermark Flag
+#define DAC_SR_DACBFRTF			0x02				// Pointer Top Position Flag
+#define DAC_SR_DACBFRBF			0x01				// Pointer Bottom Position Flag
 #define DAC0_C0			(*(volatile uint8_t  *)0x400CC021) // DAC Control Register
 #define DAC_C0_DACEN			0x80				// DAC Enable
 #define DAC_C0_DACRFS			0x40				// DAC Reference Select
@@ -2974,6 +3009,7 @@ typedef struct {
 #define CMP_MUXCR_PSTM          (uint8_t)0x40 // Pass Through Mode Enable
 #define CMP_MUXCR_PSEL(n)       (uint8_t)(((n) & 0x07) << 3) // Plus Input Mux Control
 #define CMP_MUXCR_MSEL(n)       (uint8_t)(((n) & 0x07) << 0) // Minus Input Mux Control
+#if defined(KINETISK)
 #define CMP1_CR0		(*(volatile uint8_t  *)0x40073008) // CMP Control Register 0
 #define CMP1_CR1		(*(volatile uint8_t  *)0x40073009) // CMP Control Register 1
 #define CMP1_FPR		(*(volatile uint8_t  *)0x4007300A) // CMP Filter Period Register
@@ -2992,7 +3028,7 @@ typedef struct {
 #define CMP3_SCR		(*(volatile uint8_t  *)0x4007301B) // CMP Status and Control Register
 #define CMP3_DACCR		(*(volatile uint8_t  *)0x4007301C) // DAC Control Register
 #define CMP3_MUXCR		(*(volatile uint8_t  *)0x4007301D) // MUX Control Register
-
+#endif
 // Analog Voltage Reference (VREFV1)
 
 #define VREF_TRM		(*(volatile uint8_t  *)0x40074000) // VREF Trim Register
@@ -3004,7 +3040,11 @@ typedef struct {
 #define VREF_SC_ICOMPEN			((uint8_t)0x20)			// Second order curvature compensation enable
 #define VREF_SC_VREFST			((uint8_t)0x04)			// Internal Voltage Reference stable flag
 #define VREF_SC_MODE_LV(n)		(uint8_t)(((n) & 3) << 0)	// Buffer Mode selection: 0=Bandgap on only
-//  2=Low-power buffer mode
+									//  2=Low-power buffer mode
+#define VREF_SC_MODE_LV_BANDGAPONLY     0
+#define VREF_SC_MODE_LV_HIGHPOWERBUF    1
+#define VREF_SC_MODE_LV_LOWPOWERBUF     2
+
 
 // Programmable Delay Block (PDB)
 
@@ -3033,6 +3073,8 @@ typedef struct {
 #define PDB0_CH1DLY0		(*(volatile uint32_t *)0x40036040) // Channel 1 Delay 0 Register
 #define PDB0_CH1DLY1		(*(volatile uint32_t *)0x40036044) // Channel 1 Delay 1 Register
 #define PDB0_DACINTC0		(*(volatile uint32_t *)0x40036150) // DAC Interval Trigger n Control Register
+#define PDB_DACINTC_EXT			0x02			// External Trigger Input Enable
+#define PDB_DACINTC_TOE			0x01			// Interval Trigger Enable
 #define PDB0_DACINT0		(*(volatile uint32_t *)0x40036154) // DAC Interval n Register
 #define PDB0_DACINTC1		(*(volatile uint32_t *)0x40036158) // DAC Interval Trigger n Control register
 #define PDB0_DACINT1		(*(volatile uint32_t *)0x4003615C) // DAC Interval n register
@@ -3460,10 +3502,10 @@ typedef struct {
 #define PIT_LTMR64L             (*(volatile uint32_t *)0x400370E4) // PIT Lower Lifetime Timer Register
 #endif // defined(KINETISL)
 typedef struct {
-  volatile uint32_t	LDVAL;
-  volatile uint32_t	CVAL;
-  volatile uint32_t	TCTRL;
-  volatile uint32_t	TFLG;
+	volatile uint32_t	LDVAL;
+	volatile uint32_t	CVAL;
+	volatile uint32_t	TCTRL;
+	volatile uint32_t	TFLG;
 } KINETISK_PIT_CHANNEL_t;
 #define KINETISK_PIT_CHANNELS	(KINETISK_PIT_CHANNEL_t *)(0x40037100)
 #define PIT_LDVAL0		(*(volatile uint32_t *)0x40037100) // Timer Load Value Register
@@ -3549,6 +3591,12 @@ typedef struct {
 #define RTC_SR_TIF			((uint32_t)0x00000001)		//
 #define RTC_LR			(*(volatile uint32_t *)0x4003D018) // RTC Lock Register
 #define RTC_IER			(*(volatile uint32_t *)0x4003D01C) // RTC Interrupt Enable Register
+#define RTC_IER_WPON		((uint32_t)0x00000080)		// RTC Wakeup Pin
+#define RTC_IER_TSIE		((uint32_t)0x00000010)		// RTC Time Seconds Interrupt
+#define RTC_IER_MOIE		((uint32_t)0x00000008)		// RTC Monotonic Overflow Interrupt
+#define RTC_IER_TAIE		((uint32_t)0x00000004)		// RTC Time Alarm Interrupt
+#define RTC_IER_TOIE		((uint32_t)0x00000002)		// RTC Overflow Interrupt
+#define RTC_IER_TIIE		((uint32_t)0x00000001)		// RTC Time Invalid Interrupt
 #define RTC_WAR			(*(volatile uint32_t *)0x4003D800) // RTC Write Access Register
 #define RTC_RAR			(*(volatile uint32_t *)0x4003D804) // RTC Read Access Register
 
@@ -3895,7 +3943,7 @@ typedef struct {
 #define USB_CLK_RECOVER_CTRL_CLOCK_RECOVER_EN		((uint8_t)0x80)
 #define USB_CLK_RECOVER_CTRL_RESET_RESUME_ROUGH_EN	((uint8_t)0x40)
 #define USB_CLK_RECOVER_CTRL_RESTART_IFRTRIM_EN		((uint8_t)0x20)
-#define USB0_CLK_RECOVER_IRC_EN	(*(volatile uint8_t  *)0x40072144) // IRC48M oscillator enable
+#define USB0_CLK_RECOVER_IRC_EN	(*(volatile uint8_t  *)0x40072144) // IRC48M oscillator enable 
 #define USB_CLK_RECOVER_IRC_EN_IRC_EN			((uint8_t)0x02)
 #define USB_CLK_RECOVER_IRC_EN_REG_EN			((uint8_t)0x01)
 #define USB0_CLK_RECOVER_INT_EN	(*(volatile uint8_t  *)0x40072154) // Clock recovery combined interrupt enable
@@ -4294,23 +4342,23 @@ typedef struct {
 
 #if defined(KINETISK)
 typedef struct {
-  volatile uint32_t	MCR;	// 0
-  volatile uint32_t	unused1;// 4
-  volatile uint32_t	TCR;	// 8
-  volatile uint32_t	CTAR0;	// c
-  volatile uint32_t	CTAR1;	// 10
-  volatile uint32_t	CTAR2;	// 14
-  volatile uint32_t	CTAR3;	// 18
-  volatile uint32_t	CTAR4;	// 1c
-  volatile uint32_t	CTAR5;	// 20
-  volatile uint32_t	CTAR6;	// 24
-  volatile uint32_t	CTAR7;	// 28
-  volatile uint32_t	SR;	// 2c
-  volatile uint32_t	RSER;	// 30
-  volatile uint32_t	PUSHR;	// 34
-  volatile uint32_t	POPR;	// 38
-  volatile uint32_t	TXFR[16]; // 3c
-  volatile uint32_t	RXFR[16]; // 7c
+	volatile uint32_t	MCR;	// 0
+	volatile uint32_t	unused1;// 4
+	volatile uint32_t	TCR;	// 8
+	volatile uint32_t	CTAR0;	// c
+	volatile uint32_t	CTAR1;	// 10
+	volatile uint32_t	CTAR2;	// 14
+	volatile uint32_t	CTAR3;	// 18
+	volatile uint32_t	CTAR4;	// 1c
+	volatile uint32_t	CTAR5;	// 20
+	volatile uint32_t	CTAR6;	// 24
+	volatile uint32_t	CTAR7;	// 28
+	volatile uint32_t	SR;	// 2c
+	volatile uint32_t	RSER;	// 30
+	volatile uint32_t	PUSHR;	// 34
+	volatile uint32_t	POPR;	// 38
+	volatile uint32_t	TXFR[16]; // 3c
+	volatile uint32_t	RXFR[16]; // 7c
 } KINETISK_SPI_t;
 #define KINETISK_SPI0		(*(KINETISK_SPI_t *)0x4002C000)
 #define SPI0_MCR		(KINETISK_SPI0.MCR)	// DSPI Module Configuration Register
@@ -4320,7 +4368,7 @@ typedef struct {
 #define SPI_MCR_FRZ			((uint32_t)0x08000000)		//
 #define SPI_MCR_MTFE			((uint32_t)0x04000000)		//
 #define SPI_MCR_ROOE			((uint32_t)0x01000000)		//
-#define SPI_MCR_PCSIS(n)		(((n) & 0x1F) << 16)		//
+#define SPI_MCR_PCSIS(n)		(((n) & 0x3F) << 16)		//
 #define SPI_MCR_DOZE			((uint32_t)0x00008000)		//
 #define SPI_MCR_MDIS			((uint32_t)0x00004000)		//
 #define SPI_MCR_DIS_TXF			((uint32_t)0x00002000)		//
@@ -4368,7 +4416,7 @@ typedef struct {
 #define SPI_PUSHR_CTAS(n)		(((n) & 7) << 28)		//
 #define SPI_PUSHR_EOQ			((uint32_t)0x08000000)		//
 #define SPI_PUSHR_CTCNT			((uint32_t)0x04000000)		//
-#define SPI_PUSHR_PCS(n)		(((n) & 31) << 16)		//
+#define SPI_PUSHR_PCS(n)		(((n) & 0x3f) << 16)		//
 #define SPI0_PUSHR_SLAVE	(KINETISK_SPI0.PUSHR)	// DSPI PUSH TX FIFO Register In Slave Mode
 #define SPI0_POPR		(KINETISK_SPI0.POPR)	// DSPI POP RX FIFO Register
 #define SPI0_TXFR0		(KINETISK_SPI0.TXFR[0])	// DSPI Transmit FIFO Registers
@@ -4424,18 +4472,18 @@ typedef struct {
 #endif
 #elif defined(KINETISL)
 typedef struct {
-  volatile uint8_t	S;
-  volatile uint8_t	BR;
-  volatile uint8_t	C2;
-  volatile uint8_t	C1;
-  volatile uint8_t	ML;
-  volatile uint8_t	MH;
-  volatile uint8_t	DL;
-  volatile uint8_t	DH;
-  volatile uint8_t	unused1;
-  volatile uint8_t	unused2;
-  volatile uint8_t	CI;
-  volatile uint8_t	C3;
+	volatile uint8_t	S;
+	volatile uint8_t	BR;
+	volatile uint8_t	C2;
+	volatile uint8_t	C1;
+	volatile uint8_t	ML;
+	volatile uint8_t	MH;
+	volatile uint8_t	DL;
+	volatile uint8_t	DH;
+	volatile uint8_t	unused1;
+	volatile uint8_t	unused2;
+	volatile uint8_t	CI;
+	volatile uint8_t	C3;
 } KINETISL_SPI_t;
 #define KINETISL_SPI0		(*(KINETISL_SPI_t *)0x40076000)
 #define KINETISL_SPI1		(*(KINETISL_SPI_t *)0x40077000)
@@ -4505,18 +4553,18 @@ typedef struct {
 // Inter-Integrated Circuit (I2C)
 
 typedef struct {
-  volatile uint8_t	A1;
-  volatile uint8_t	F;
-  volatile uint8_t	C1;
-  volatile uint8_t	S;
-  volatile uint8_t	D;
-  volatile uint8_t	C2;
-  volatile uint8_t	FLT;
-  volatile uint8_t	RA;
-  volatile uint8_t	SMB;
-  volatile uint8_t	A2;
-  volatile uint8_t	SLTH;
-  volatile uint8_t	SLTL;
+	volatile uint8_t	A1;
+	volatile uint8_t	F;
+	volatile uint8_t	C1;
+	volatile uint8_t	S;
+	volatile uint8_t	D;
+	volatile uint8_t	C2;
+	volatile uint8_t	FLT;
+	volatile uint8_t	RA;
+	volatile uint8_t	SMB;
+	volatile uint8_t	A2;
+	volatile uint8_t	SLTH;
+	volatile uint8_t	SLTL;
 } KINETIS_I2C_t;
 #define KINETIS_I2C0		(*(KINETIS_I2C_t *)0x40066000)
 #define KINETIS_I2C1		(*(KINETIS_I2C_t *)0x40067000)
@@ -4668,56 +4716,56 @@ typedef struct {
 // Universal Asynchronous Receiver/Transmitter (UART)
 
 typedef struct __attribute__((packed)) {
-  volatile uint8_t	BDH;
-  volatile uint8_t	BDL;
-  volatile uint8_t	C1;
-  volatile uint8_t	C2;
-  volatile uint8_t	S1;
-  volatile uint8_t	S2;
-  volatile uint8_t	C3;
-  volatile uint8_t	D;
-  volatile uint8_t	MA1;
-  volatile uint8_t	MA2;
-  volatile uint8_t	C4;
-  volatile uint8_t	C5;
-  volatile uint8_t	ED;
-  volatile uint8_t	MODEM;
-  volatile uint8_t	IR;
-  volatile uint8_t	unused1;
-  volatile uint8_t	PFIFO;
-  volatile uint8_t	CFIFO;
-  volatile uint8_t	SFIFO;
-  volatile uint8_t	TWFIFO;
-  volatile uint8_t	TCFIFO;
-  volatile uint8_t	RWFIFO;
-  volatile uint8_t	RCFIFO;
-  volatile uint8_t	unused2;
-  volatile uint8_t	C7816;
-  volatile uint8_t	IE7816;
-  volatile uint8_t	IS7816;
-  union { volatile uint8_t WP7816T0; volatile uint8_t WP7816T1; };
-  volatile uint8_t	WN7816;
-  volatile uint8_t	WF7816;
-  volatile uint8_t	ET7816;
-  volatile uint8_t	TL7816;
-  volatile uint8_t	unused3;
-  volatile uint8_t	C6;
-  volatile uint8_t	PCTH;
-  volatile uint8_t	PCTL;
-  volatile uint8_t	B1T;
-  volatile uint8_t	SDTH;
-  volatile uint8_t	SDTL;
-  volatile uint8_t	PRE;
-  volatile uint8_t	TPL;
-  volatile uint8_t	IE;
-  volatile uint8_t	WB;
-  volatile uint8_t	S3;
-  volatile uint8_t	S4;
-  volatile uint8_t	RPL;
-  volatile uint8_t	RPREL;
-  volatile uint8_t	CPW;
-  volatile uint8_t	RIDT;
-  volatile uint8_t	TIDT;
+	volatile uint8_t	BDH;
+	volatile uint8_t	BDL;
+	volatile uint8_t	C1;
+	volatile uint8_t	C2;
+	volatile uint8_t	S1;
+	volatile uint8_t	S2;
+	volatile uint8_t	C3;
+	volatile uint8_t	D;
+	volatile uint8_t	MA1;
+	volatile uint8_t	MA2;
+	volatile uint8_t	C4;
+	volatile uint8_t	C5;
+	volatile uint8_t	ED;
+	volatile uint8_t	MODEM;
+	volatile uint8_t	IR;
+	volatile uint8_t	unused1;
+	volatile uint8_t	PFIFO;
+	volatile uint8_t	CFIFO;
+	volatile uint8_t	SFIFO;
+	volatile uint8_t	TWFIFO;
+	volatile uint8_t	TCFIFO;
+	volatile uint8_t	RWFIFO;
+	volatile uint8_t	RCFIFO;
+	volatile uint8_t	unused2;
+	volatile uint8_t	C7816;
+	volatile uint8_t	IE7816;
+	volatile uint8_t	IS7816;
+	union { volatile uint8_t WP7816T0; volatile uint8_t WP7816T1; };
+	volatile uint8_t	WN7816;
+	volatile uint8_t	WF7816;
+	volatile uint8_t	ET7816;
+	volatile uint8_t	TL7816;
+	volatile uint8_t	unused3;
+	volatile uint8_t	C6;
+	volatile uint8_t	PCTH;
+	volatile uint8_t	PCTL;
+	volatile uint8_t	B1T;
+	volatile uint8_t	SDTH;
+	volatile uint8_t	SDTL;
+	volatile uint8_t	PRE;
+	volatile uint8_t	TPL;
+	volatile uint8_t	IE;
+	volatile uint8_t	WB;
+	volatile uint8_t	S3;
+	volatile uint8_t	S4;
+	volatile uint8_t	RPL;
+	volatile uint8_t	RPREL;
+	volatile uint8_t	CPW;
+	volatile uint8_t	RIDT;
+	volatile uint8_t	TIDT;
 } KINETISK_UART_t;
 #define KINETISK_UART0		(*(KINETISK_UART_t *)0x4006A000)
 #define UART0_BDH		(KINETISK_UART0.BDH)		// UART Baud Rate Registers: High
@@ -5260,12 +5308,12 @@ typedef struct __attribute__((packed)) {
 // Low Power Asynchronous Receiver/Transmitter (LPUART)
 
 typedef struct __attribute__((packed)) {
-  volatile uint32_t	BAUD;
-  volatile uint32_t	STAT;
-  volatile uint32_t	CTRL;
-  volatile uint32_t	DATA;
-  volatile uint32_t	MATCH;
-  volatile uint32_t	MODIR;
+	volatile uint32_t	BAUD;
+	volatile uint32_t	STAT;
+	volatile uint32_t	CTRL;
+	volatile uint32_t	DATA;
+	volatile uint32_t	MATCH;
+	volatile uint32_t	MODIR;
 } KINETISK_LPUART_t;
 #define KINETISK_LPUART0	(*(KINETISK_LPUART_t *)0x400C4000)
 #define LPUART0_BAUD		(KINETISK_LPUART0.BAUD)		// LPUART Baud Register
@@ -5276,7 +5324,7 @@ typedef struct __attribute__((packed)) {
 #define LPUART_BAUD_TDMAE		((uint32_t)0x00800000)		// Transmitter Dma Enable
 #define LPUART_BAUD_RDMAE		((uint32_t)0x00400000)		// Receiver Dma Enable
 #define LPUART_BAUD_BOTHEDGE	((uint32_t)0x00020000)		// Both edge sampling needed OSR 4-7
-#define LPUART_BAUD_SBNS		((uint32_t)0x00002000)		// UART Stop Bit Number Select
+#define LPUART_BAUD_SBNS		((uint32_t)0x00002000)		// UART Stop Bit Number Select 
 #define LPUART_BAUD_SBR(n)		((uint32_t)((n) & 0x1fff) << 0) // set baud rate divisor
 
 #define LPUART0_STAT		(KINETISK_LPUART0.STAT)		// LPUART Status register
@@ -5623,7 +5671,14 @@ typedef struct __attribute__((packed)) {
 // System Control Space (SCS), ARMv7 ref manual, B3.2, page 708
 #define SCB_CPUID		(*(const    uint32_t *)0xE000ED00) // CPUID Base Register
 #define SCB_ICSR		(*(volatile uint32_t *)0xE000ED04) // Interrupt Control and State
+#define SCB_ICSR_NMIPENDSET		((uint32_t)0x80000000)
+#define SCB_ICSR_PENDSVSET		((uint32_t)0x10000000)
+#define SCB_ICSR_PENDSVCLR		((uint32_t)0x08000000)
 #define SCB_ICSR_PENDSTSET		((uint32_t)0x04000000)
+#define SCB_ICSR_PENDSTCLR		((uint32_t)0x02000000)
+#define SCB_ICSR_ISRPREEMPT		((uint32_t)0x00800000)
+#define SCB_ICSR_ISRPENDING		((uint32_t)0x00400000)
+#define SCB_ICSR_RETTOBASE		((uint32_t)0x00000800)
 #define SCB_VTOR		(*(volatile uint32_t *)0xE000ED08) // Vector Table Offset
 #define SCB_AIRCR		(*(volatile uint32_t *)0xE000ED0C) // Application Interrupt and Reset Control
 #define SCB_SCR			(*(volatile uint32_t *)0xE000ED10) // System Control Register

@@ -15,4 +15,6 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 0
 
+CXXEXFLAGS += -std=c++11
+
 include $(RIOTBASE)/Makefile.include
