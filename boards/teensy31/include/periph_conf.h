@@ -133,17 +133,6 @@ static const pwm_conf_t pwm_config[] = {
         },
         .chan_numof = 2,
         .ftm_num    = 0
-    },
-    {
-        .ftm        = FTM1,
-        .chan       = {
-            { .pin = GPIO_PIN(PORT_A, 12), .af = 3, .ftm_chan = 0 }, /* TEENSY PIN 3 */
-            { .pin = GPIO_PIN(PORT_A, 13), .af = 3, .ftm_chan = 1 }, /* TEENSY PIN 4 */
-            { .pin = GPIO_UNDEF,           .af = 0, .ftm_chan = 0 },
-            { .pin = GPIO_UNDEF,           .af = 0, .ftm_chan = 0 }
-        },
-        .chan_numof = 2,
-        .ftm_num    = 1
     }
 };
 
