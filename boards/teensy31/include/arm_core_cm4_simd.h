@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file     teensy_arm_core_cm4_simd.h
+ * @file     core_cm4_simd.h
  * @brief    CMSIS Cortex-M4 SIMD Header File
  * @version  V3.01
  * @date     06. March 2012

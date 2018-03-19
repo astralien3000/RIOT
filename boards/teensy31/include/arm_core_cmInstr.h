@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file     teensy_arm_core_cmInstr.h
+ * @file     core_cmInstr.h
  * @brief    CMSIS Cortex-M Core Instruction Access Header File
  * @version  V3.01
  * @date     06. March 2012

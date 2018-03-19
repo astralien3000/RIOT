@@ -25,6 +25,8 @@
 #include "cpu.h"
 #include "periph/gpio.h"
 
+void ResetHandler(void);
+
 void board_init(void)
 {
     /* initialize the boards LEDs */
@@ -32,5 +34,6 @@ void board_init(void)
     gpio_set(LED0_PIN);
 
     /* initialize the CPU */
-    cpu_init();
+    //cpu_init();
+    ResetHandler();
 }

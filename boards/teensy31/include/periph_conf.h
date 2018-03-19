@@ -43,8 +43,7 @@ static const clock_config_t clock_config = {
     /* This configuration uses the RTC crystal to provide the base clock, it
      * should have better accuracy than the internal slow clock, and lower power
      * consumption than using the 16 MHz crystal and the OSC0 module */
-    .clkdiv1 = SIM_CLKDIV1_OUTDIV1(0) | SIM_CLKDIV1_OUTDIV2(0) |
-               SIM_CLKDIV1_OUTDIV3(2) | SIM_CLKDIV1_OUTDIV4(2),
+    .clkdiv1 = SIM_CLKDIV1_OUTDIV1(1) | SIM_CLKDIV1_OUTDIV2(1) | SIM_CLKDIV1_OUTDIV3(1) |  SIM_CLKDIV1_OUTDIV4(3),
     .default_mode = KINETIS_MCG_MODE_FEE,
     .erc_range = KINETIS_MCG_ERC_RANGE_LOW, /* Input clock is 32768 Hz */
     .fcrdiv = 0, /* Fast IRC divide by 1 => 4 MHz */

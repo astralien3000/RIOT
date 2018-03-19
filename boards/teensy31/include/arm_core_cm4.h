@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file     teensy_arm_core_cm4.h
+ * @file     core_cm4.h
  * @brief    CMSIS Cortex-M4 Core Peripheral Access Layer Header File
  * @version  V3.01
  * @date     22. March 2012
@@ -151,9 +151,9 @@
 #endif
 
 #include <stdint.h>                      /* standard types definitions                      */
-#include <teensy_arm_core_cmInstr.h>                /* Core Instruction Access                         */
-//#include <core_cmFunc.h>                 /* Core Function Access                            */
-#include <teensy_arm_core_cm4_simd.h>               /* Compiler specific SIMD Intrinsics               */
+#include <arm_core_cmInstr.h>                /* Core Instruction Access                         */
+#include <core_cmFunc.h>                 /* Core Function Access                            */
+#include <arm_core_cm4_simd.h>               /* Compiler specific SIMD Intrinsics               */
 
 #endif /* __CORE_CM4_H_GENERIC */
 

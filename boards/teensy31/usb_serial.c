@@ -30,7 +30,7 @@
 
 #include "usb_dev.h"
 #include "usb_serial.h"
-#include "core_pins.h" // for yield()
+//#include "core_pins.h" // for yield()
 //#include "HardwareSerial.h"
 #include <string.h> // for memcpy()
 
@@ -214,7 +214,7 @@ int usb_serial_write(const void *buffer, uint32_t size)
 					transmit_previous_timeout = 1;
 					return -1;
 				}
-				yield();
+                //yield();
 			}
 		}
 		transmit_previous_timeout = 0;
