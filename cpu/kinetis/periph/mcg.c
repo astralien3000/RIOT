@@ -25,6 +25,8 @@
 #include "mcg.h"
 #include "bit.h"
 
+#include "board.h"
+
 /* Pathfinding for the clocking modes, this table lists the next mode in the
  * chain when moving from mode <first> to mode <second> */
 static const uint8_t mcg_mode_routing[8][8] = {
@@ -308,7 +310,6 @@ int kinetis_mcg_set_mode(kinetis_mcg_mode_t mode)
     if (mode >= KINETIS_MCG_MODE_NUMOF) {
         return -1;
     }
-
     /* Using `do` because if we already are on the desired mode we still want to
      * update the hardware settings, e.g. when using FEI mode (since FEI is the
      * hardware reset default) */
@@ -405,6 +406,7 @@ static void kinetis_mcg_set_safe_mode(void)
 
 void kinetis_mcg_init(void)
 {
+
     unsigned mask = irq_disable();
     /* Go to FBI mode for safety */
     kinetis_mcg_set_safe_mode();

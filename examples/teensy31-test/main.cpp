@@ -29,6 +29,7 @@
  */
 
 #include "WProgram.h"
+#include <usb_dev.h>
 
 extern "C" int main(void)
 {
