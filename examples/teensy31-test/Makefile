@@ -17,4 +17,6 @@ QUIET ?= 0
 
 WERROR = 0
 
+USEMODULE += xtimer
+
 include $(RIOTBASE)/Makefile.include

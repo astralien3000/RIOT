@@ -347,7 +347,7 @@ static void usb_setup(void)
 		return;
 #if defined(CDC_STATUS_INTERFACE)
 	  case 0x2221: // CDC_SET_CONTROL_LINE_STATE
-		usb_cdc_line_rtsdtr_millis = systick_millis_count;
+        usb_cdc_line_rtsdtr_millis = 0;//systick_millis_count;
 		usb_cdc_line_rtsdtr = setup.wValue;
 		//serial_print("set control line state\n");
 		break;
@@ -1097,6 +1097,11 @@ void isr_usb0(void)
 void usb_init(void)
 {
 	int i;
+
+    SIM_CLKDIV2 = SIM_CLKDIV2_USBDIV(1);
+
+    // USB uses PLL clock, trace is CPU clock, CLKOUT=OSCERCLK0
+    SIM_SOPT2 = SIM_SOPT2_USBSRC | SIM_SOPT2_PLLFLLSEL | SIM_SOPT2_TRACECLKSEL | SIM_SOPT2_CLKOUTSEL(6);
 
 	//serial_begin(BAUD2DIV(115200));
 	//serial_print("usb_init\n");

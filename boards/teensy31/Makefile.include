@@ -9,8 +9,6 @@ CFLAGS += -Wno-sign-compare
 
 CXXEXFLAGS += -std=gnu++14
 
-LINKFLAGS += -Wl,--defsym=__rtc_localtime=0,--defsym=_sdata=_srelocate,--defsym=_edata=_erelocate
-
 # custom flasher to use with the bootloader
 TEENSY_LOADER = $(RIOTBASE)/dist/tools/teensy-loader-cli/teensy_loader
 FLASHER = $(TEENSY_LOADER)
