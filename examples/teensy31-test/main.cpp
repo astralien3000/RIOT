@@ -7,11 +7,11 @@
 
 extern "C" int main(void)
 {
-    //qdec_init(1, QDEC_X4, NULL, NULL);
+    qdec_init(1, QDEC_X4, NULL, NULL);
     qdec_init(2, QDEC_X4, NULL, NULL);
 
     while (1) {
-        int p1 = 0;//qdec_read(1);
+        int p1 = qdec_read(1);
         int p2 = qdec_read(2);
         char buff[128];
         snprintf(buff, 128, "[%i, %i]\n", p1, p2);

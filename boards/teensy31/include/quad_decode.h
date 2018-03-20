@@ -289,7 +289,7 @@ void QuadDecode<N>::setup(){
     PORTB_PCR1 = 0x00000612;   //Alt6-QD_FTM1,FilterEnable,Pulldown
     //Default is input, don't need to write PDDR (Direction)
 
-    SIM_SCGC6 = SIM_SCGC6_FTM1;
+    SIM_SCGC6 |= SIM_SCGC6_FTM1;
   }else{  // FTM2
     // K20 pin 41,42
     // Bit 8-10 is Alt Assignment
@@ -297,7 +297,7 @@ void QuadDecode<N>::setup(){
     PORTB_PCR19 = 0x00000612;   //Alt6-QD_FTM2,FilterEnable,Pulldown
     //Default is input, don't need to write PDDR (Direction)
 
-    SIM_SCGC3 = SIM_SCGC3_FTM2;
+    SIM_SCGC3 |= SIM_SCGC3_FTM2;
   };
 
   //Set FTMEN to be able to write registers
