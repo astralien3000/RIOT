@@ -31,26 +31,40 @@ extern "C"
  * @{
  */
 static const clock_config_t clock_config = {
-    // safe clock dividers for this CPU
+    /*
+     * This configuration results in the system running from the FLL output with
+     * the following clock frequencies:
+     * Core:  48 MHz
+     * Bus:   48 MHz
+     * Flex:  24 MHz
+     * Flash: 24 MHz
+     */
+    /* The board has a 16 MHz crystal, though it is not used in this configuration */
+    /* This configuration uses the RTC crystal to provide the base clock, it
+     * should have better accuracy than the internal slow clock, and lower power
+     * consumption than using the 16 MHz crystal and the OSC0 module */
     .clkdiv1 = SIM_CLKDIV1_OUTDIV1(0) | SIM_CLKDIV1_OUTDIV2(0) |
-               SIM_CLKDIV1_OUTDIV3(1) | SIM_CLKDIV1_OUTDIV4(2),
-    // Select default clocking mode
-    .default_mode = KINETIS_MCG_MODE_PEE,
-    // The crystal connected to OSC0 is 8 MHz
-    .erc_range = KINETIS_MCG_ERC_RANGE_HIGH,
-    .fcrdiv = 0, // Fast IRC divide by 1 => 4 MHz
-    .oscsel = 0, // Use OSC0 for external clock
-    .clc = 0, // Use external load caps on board
-    .fll_frdiv = 0b011, // Divide by 256
-    .fll_factor_fei = KINETIS_MCG_FLL_FACTOR_1920, // FLL freq = 60 MHz ?
-    .fll_factor_fee = KINETIS_MCG_FLL_FACTOR_1920, // FLL freq = 60 MHz
-    .pll_prdiv = 0b00011, // Divide by 4 => PLL input freq = 2 MHz
-    .pll_vdiv = 0b00000, // Multiply by 30 => PLL output freq = 60 MHz
-    .enable_oscillator = true, // Enable oscillator, EXTAL0 is connected to a crystal
-    .select_fast_irc = true, // Use fast IRC when in FBI mode
-    .enable_mcgirclk = false, // We don't need the internal reference clock while running in PEE mode
+               SIM_CLKDIV1_OUTDIV3(2) | SIM_CLKDIV1_OUTDIV4(2),
+    .default_mode = KINETIS_MCG_MODE_FEE,
+    .erc_range = KINETIS_MCG_ERC_RANGE_LOW, /* Input clock is 32768 Hz */
+    .fcrdiv = 0, /* Fast IRC divide by 1 => 4 MHz */
+    .oscsel = 1, /* Use RTC for external clock */
+    /* 16 pF capacitors yield ca 10 pF load capacitance as required by the
+     * onboard xtal, not used when OSC0 is disabled */
+    .clc = 0b0001,
+    .fll_frdiv = 0b000, /* Divide by 1 => FLL input 32768 Hz */
+    .fll_factor_fei = KINETIS_MCG_FLL_FACTOR_1464, /* FLL freq = 48 MHz */
+    .fll_factor_fee = KINETIS_MCG_FLL_FACTOR_1464, /* FLL freq = 48 MHz */
+    /* PLL is unavailable when using a 32768 Hz source clock, so the
+     * configuration below can only be used if the above config is modified to
+     * use the 16 MHz crystal instead of the RTC. */
+    .pll_prdiv = 0b00111, /* Divide by 8 */
+    .pll_vdiv = 0b01100, /* Multiply by 36 => PLL freq = 72 MHz */
+    .enable_oscillator = false, /* the RTC module provides the clock input signal */
+    .select_fast_irc = true, /* Only used for FBI mode */
+    .enable_mcgirclk = false,
 };
-#define CLOCK_CORECLOCK              (60000000ul)
+#define CLOCK_CORECLOCK              (48000000ul)
 #define CLOCK_BUSCLOCK               (CLOCK_CORECLOCK / 1)
 /** @} */
 

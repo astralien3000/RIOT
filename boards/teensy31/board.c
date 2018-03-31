@@ -25,8 +25,6 @@
 #include "cpu.h"
 #include "periph/gpio.h"
 
-#include "usb_dev.h"
-
 void board_init(void)
 {
     /* initialize the boards LEDs */
@@ -35,6 +33,4 @@ void board_init(void)
 
     /* initialize the CPU */
     cpu_init();
-
-    usb_init();
 }
