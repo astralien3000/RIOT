@@ -2,8 +2,18 @@
 
 #include "quad_decode.h"
 
+#include "vectors_kinetis.h"
+
 QuadDecode<1> enc1;
 QuadDecode<2> enc2;
+
+void isr_ftm1(void) {
+  enc1.ftm_isr();
+}
+
+void isr_ftm2(void) {
+  enc2.ftm_isr();
+}
 
 int32_t qdec_init(qdec_t dev, qdec_mode_t mode, qdec_cb_t cb, void *arg) {
     if(dev == 1) {
