@@ -90,3 +90,7 @@ endif
 ifneq (native,$(BOARD))
   INCLUDES += -I$(RIOTBASE)/sys/libc/include
 endif
+
+ifneq (,$(filter usb_dev_core,$(USEMODULE)))
+  INCLUDES += -I$(RIOTBASE)/sys/usb_dev_core/include
+endif
