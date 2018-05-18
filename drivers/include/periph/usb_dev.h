@@ -35,6 +35,13 @@
 extern "C" {
 #endif
 
+typedef enum {
+  USB_DEV_EP_TYPE_CTRL,
+  USB_DEV_EP_TYPE_ISOC,
+  USB_DEV_EP_TYPE_BULK,
+  USB_DEV_EP_TYPE_INTR
+} usb_dev_ep_type_t;
+
 /**
  * @brief   Define default USB_DEV_EP type identifier
  */
@@ -80,7 +87,7 @@ int usb_dev_init(void);
  *
  * TODO
  */
-int usb_dev_ep_init(usb_dev_ep_t ep);
+int usb_dev_ep_open(usb_dev_ep_t ep, uint32_t mps, usb_dev_ep_type_t type);
 
 /**
  * @brief   Write data from the given buffer to the specified USB_DEV endpoint
