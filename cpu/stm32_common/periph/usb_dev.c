@@ -63,6 +63,12 @@
 #define EP_TYPE_INTR                           3
 #define EP_TYPE_MSK                            3
 
+#define STS_GOUT_NAK                           1
+#define STS_DATA_UPDT                          2
+#define STS_XFER_COMP                          3
+#define STS_SETUP_COMP                         4
+#define STS_SETUP_UPDT                         6
+
 #define CFG_PHY_ITFACE USB_OTG_EMBEDDED_PHY
 #define CFG_USE_EXTERNAL_VBUS 1
 #define CFG_DMA_ENABLE DISABLE
@@ -482,6 +488,71 @@ static inline void _usb_activate_setup(void)
 
 extern void usb_dev_reset_cb(void);
 
+#define PACKED __attribute__((packed))
+#define PACKED_STRUCT struct PACKED
+#define PACKED_UNION union PACKED
+
+typedef PACKED_STRUCT {
+  PACKED_UNION {
+    PACKED_STRUCT {
+      uint8_t   bmRequest;
+      uint8_t   bRequest;
+      uint16_t  wValue;
+      uint16_t  wIndex;
+      uint16_t  wLength;
+    };
+    PACKED_STRUCT {
+      uint32_t u32Raw[2];
+    };
+  };
+} usbd_setup_req_t;
+
+void USB_ReadPacket(uint8_t *dest, uint16_t len)
+{
+  uint32_t i=0;
+  uint32_t count32b = (len + 3) / 4;
+
+  usbd_setup_req_t req;
+
+  for ( i = 0; i < count32b; i++, dest += 4 )
+  {
+    //*(__packed uint32_t *)dest = USBx_DFIFO(0);
+    req.u32Raw[i] = USBx_DFIFO(0);
+  }
+
+  DEBUG("bmRequest = %lu\n", (uint32_t)req.bmRequest);
+  DEBUG("bRequest = %lu\n", (uint32_t)req.bRequest);
+  DEBUG("wValue = %lu\n", (uint32_t)req.wValue);
+  DEBUG("wIndex = %lu\n", (uint32_t)req.wIndex);
+  DEBUG("wLength = %lu\n", (uint32_t)req.wLength);
+}
+
+uint32_t USB_ReadDevAllOutEpInterrupt (void)
+{
+  uint32_t v;
+  v  = USBx_DEVICE->DAINT;
+  v &= USBx_DEVICE->DAINTMSK;
+  return ((v & 0xffff0000) >> 16);
+}
+
+uint32_t USB_ReadDevOutEPInterrupt (uint8_t epnum)
+{
+  uint32_t v;
+  v  = USBx_OUTEP(epnum)->DOEPINT;
+  v &= USBx_DEVICE->DOEPMSK;
+  return v;
+}
+
+void HAL_PCD_DataOutStageCallback(uint8_t epnum)
+{
+  DEBUG("HAL_PCD_DataOutStageCallback %lu\n", (uint32_t)epnum);
+}
+
+void HAL_PCD_SetupStageCallback(void)
+{
+  DEBUG("HAL_PCD_SetupStageCallback\n");
+}
+
 void isr_otg_fs(void) {
   DEBUG("isr_otg_fs\n");
   PRINTREG(USBx->GINTMSK);
@@ -571,6 +642,92 @@ void isr_otg_fs(void) {
       //HAL_PCD_SuspendCallback(hpcd);
     }
     USBx->GINTSTS = USB_OTG_GINTSTS_USBSUSP;
+  }
+
+  /* Handle RxQLevel Interrupt */
+  if(USBx->GINTSTS & USB_OTG_GINTSTS_RXFLVL)
+  {
+    DEBUG("RxQLvl\n");
+    USBx->GINTMSK &= ~USB_OTG_GINTSTS_RXFLVL;
+    const uint32_t temp = USBx->GRXSTSP;
+    const uint32_t ep_num = temp & USB_OTG_GRXSTSP_EPNUM;
+    //USB_OTG_EPTypeDef* ep = &hpcd->OUT_ep[temp & USB_OTG_GRXSTSP_EPNUM];
+    DEBUG("EP%lu\n", ep_num);
+
+    if(((temp & USB_OTG_GRXSTSP_PKTSTS) >> 17) ==  STS_DATA_UPDT)
+    {
+      if((temp & USB_OTG_GRXSTSP_BCNT) != 0)
+      {
+        DEBUG("DATA\n");
+        //USB_ReadPacket(USBx, ep->xfer_buff, (temp & USB_OTG_GRXSTSP_BCNT) >> 4);
+        USB_ReadPacket(NULL, (temp & USB_OTG_GRXSTSP_BCNT) >> 4);
+        //ep->xfer_buff += (temp & USB_OTG_GRXSTSP_BCNT) >> 4;
+        //ep->xfer_count += (temp & USB_OTG_GRXSTSP_BCNT) >> 4;
+      }
+    }
+    else if (((temp & USB_OTG_GRXSTSP_PKTSTS) >> 17) ==  STS_SETUP_UPDT)
+    {
+      DEBUG("SETUP\n");
+      //USB_ReadPacket(USBx, (uint8_t *)hpcd->Setup, 8);
+      USB_ReadPacket(NULL, 8);
+      //ep->xfer_count += (temp & USB_OTG_GRXSTSP_BCNT) >> 4;
+    }
+    USBx->GINTMSK |= USB_OTG_GINTSTS_RXFLVL;
+  }
+
+  if(USBx->GINTSTS & USB_OTG_GINTSTS_OEPINT)
+  {
+    DEBUG("OEPINT\n");
+    uint32_t epnum = 0;
+
+    /* Read in the device interrupt bits */
+    uint32_t ep_intr = USB_ReadDevAllOutEpInterrupt();
+
+    while ( ep_intr )
+    {
+      if (ep_intr & 0x1)
+      {
+        uint32_t epint = USB_ReadDevOutEPInterrupt(epnum);
+
+        if(( epint & USB_OTG_DOEPINT_XFRC) == USB_OTG_DOEPINT_XFRC)
+        {
+          USBx_OUTEP(epnum)->DOEPINT = USB_OTG_DOEPINT_XFRC;
+
+          if(CFG_DMA_ENABLE == 1)
+          {
+            //hpcd->OUT_ep[epnum].xfer_count = hpcd->OUT_ep[epnum].maxpacket- (USBx_OUTEP(epnum)->DOEPTSIZ & USB_OTG_DOEPTSIZ_XFRSIZ);
+            //hpcd->OUT_ep[epnum].xfer_buff += hpcd->OUT_ep[epnum].maxpacket;
+          }
+
+          HAL_PCD_DataOutStageCallback(epnum);
+
+          if(CFG_DMA_ENABLE == 1)
+          {
+#if 0
+            if((epnum == 0) && (hpcd->OUT_ep[epnum].xfer_len == 0))
+            {
+               /* this is ZLP, so prepare EP0 for next setup */
+              USB_EP0_OutStart(hpcd->Instance, 1, (uint8_t *)hpcd->Setup);
+            }
+#endif
+          }
+        }
+
+        if(( epint & USB_OTG_DOEPINT_STUP) == USB_OTG_DOEPINT_STUP)
+        {
+          /* Inform the upper layer that a setup packet is available */
+          HAL_PCD_SetupStageCallback();
+          USBx_OUTEP(epnum)->DOEPINT = USB_OTG_DOEPINT_STUP;
+        }
+
+        if(( epint & USB_OTG_DOEPINT_OTEPDIS) == USB_OTG_DOEPINT_OTEPDIS)
+        {
+          USBx_OUTEP(epnum)->DOEPINT = USB_OTG_DOEPINT_OTEPDIS;
+        }
+      }
+      epnum++;
+      ep_intr >>= 1;
+    }
   }
 
   //while(1);
