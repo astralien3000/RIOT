@@ -39,6 +39,8 @@
 #include "at86rf2xx_internal.h"
 #include "at86rf2xx_registers.h"
 
+#include "ros2_log.h"
+
 #define ENABLE_DEBUG (0)
 #include "debug.h"
 
@@ -118,6 +120,7 @@ static int _send(netdev_t *netdev, const iolist_t *iolist)
         len = at86rf2xx_tx_load(dev, iol->iol_base, iol->iol_len, len);
     }
 
+    ros2_log_add_event(AT86RF2XX_TX_EXEC);
     /* send data out directly if pre-loading id disabled */
     if (!(dev->netdev.flags & AT86RF2XX_OPT_PRELOADING)) {
         at86rf2xx_tx_exec(dev);
@@ -158,6 +161,7 @@ static int _recv(netdev_t *netdev, void *buf, size_t len, void *info)
         netdev->stats.rx_bytes += pkt_len;
     #endif
     /* copy payload */
+    ros2_log_add_event(AT86RF2XX_FB_READ);
     at86rf2xx_fb_read(dev, (uint8_t *)buf, pkt_len);
 
     /* Ignore FCS but advance fb read - we must give a temporary buffer here,
